@@ -55,9 +55,53 @@ router.get('/chat/:mycode&&:Friendcode', async (req, res) => {
 })
 
 
-router.get('/frontpage/:ID', async (req, res) => {
 
-  const find = await postDetails.findOne({ ID: req.params.ID })
+
+router.post('/chat', async (req, res) => {
+  // console.log('chat');
+
+  const mycode = req.body.mycode
+  const Friendcode = req.body.Friendcode
+ console.log(mycode);
+  const mychat = await conversation.find({ _id: mycode })
+  const Friendchat = await conversation.find({ _id: Friendcode })
+  console.log(mychat);
+  let MyMessage = []
+  let FriendMessage = []
+  let length = mychat[0].List.length
+  let length2 = Friendchat[0].List.length
+  // console.log(Friendchat[0].List.length);
+  for (let i = 0; i < length; i++) {
+
+    MyMessage.push(mychat[0].List[i])
+
+  }
+  for (let i = 0; i < length2; i++) {
+    FriendMessage.push(Friendchat[0].List[i].Message)
+  }
+
+  const sent = [{
+    MyMessage: MyMessage,
+    FriendMessage: FriendMessage
+  
+}]
+  res.json(sent)
+})
+
+// router.get('/frontpage/:ID', async (req, res) => {
+
+//   const find = await postDetails.findOne({ ID: req.params.ID })
+  
+//   if (find) {
+//     const { FriendID } = find
+//     console.log(FriendID);
+  
+//      res.json([FriendID])
+//   }
+// })
+router.post('/frontpage/', async (req, res) => {
+
+  const find = await postDetails.findOne({ ID: req.body.ID })
   
   if (find) {
     const { FriendID } = find
@@ -66,7 +110,6 @@ router.get('/frontpage/:ID', async (req, res) => {
      res.json([FriendID])
   }
 })
-
 
 
 
