@@ -26,7 +26,8 @@ app.get('/',(req,res)=>{
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-mongoose.connect('mongodb+srv://muthu:muthu17@cluster0.jp1wrus.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect('mongodb+srv://muthu:muthu17@cluster0.jp1wrus.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://chat:avTsmn6Q0PgS49Zv@chat-vercel.yetho7g.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db =mongoose.connection
 

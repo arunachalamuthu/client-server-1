@@ -91,6 +91,20 @@ router.get('/loginPage/:name&&:Password', async (req, res) => {
   }
 })
 
+router.post('/loginPage', async (req, res) => {
+  const ID = req.body.name
+  const Password = req.body.Password
+  const check = await postDetails.findOne({ ID: ID, Password: Password })
+  console.log(check);
+
+  if (check) {
+    res.json({ message: check })
+  }
+  else {
+    res.json({ result: "you dont have account" })
+  }
+})
+
 
 try{
 router.post('/chat/msg', newmessage)
