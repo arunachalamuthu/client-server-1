@@ -36,6 +36,7 @@ db.once('open',()=>console.log('connect the database'))
 
 
 app.use(express.static('public'))
+
 let imagename=''
 let upload=multer({
   storage:multer.diskStorage({
